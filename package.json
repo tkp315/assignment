@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "task-earnest-finteck",
   "private": true,
   "scripts": {
     "build": "turbo run build",

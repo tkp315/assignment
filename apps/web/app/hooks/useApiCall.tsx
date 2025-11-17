@@ -5,7 +5,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { toast } from "sonner"; 
 import React from "react";
 
-type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+type HttpMethod = "get" | "post" | "put" | "patch" | "delete";
 
 interface ApiArgs {
   url: string;
@@ -24,7 +24,7 @@ export const useApiCall = () => {
     try {
       let response;
 
-      switch (method) {
+      switch (method.toUpperCase()) {
         case "GET":
           response = await axiosInstance.get(url);
           break;

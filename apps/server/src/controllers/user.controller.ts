@@ -141,7 +141,7 @@ export const profile = asyncHandlerFunction(async (req, res) => {
     throw new ApiError("User not found", 401);
   }
 
-  const { userData, password } = user;
+  const { ...userData, password } = user;
   return res
     .status(200)
     .json(

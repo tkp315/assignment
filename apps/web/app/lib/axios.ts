@@ -6,3 +6,6 @@ export const axiosInstance = axios.create({
     baseURL:BASE_URL,
     withCredentials:true
 })
+
+let isRefreshing = false;
+let failed

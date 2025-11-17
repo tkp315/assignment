@@ -10,4 +10,5 @@ userRouter.route("/logout").post(verifyAuth,logout)
 userRouter.route("/refresh").post(refreshToken)
 userRouter.route("/me").get(verifyAuth,profile)
 
+
 export default userRouter;

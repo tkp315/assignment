@@ -1,0 +1,53 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  FINISHED
+  PENDING
+  ONGOING
+}
+
+// user 
+// task
+
+
+model User {
+  id String @id @default(uuid())
+  fullName String 
+  email String @unique
+  password String 
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tasks Task []
+  refreshToken RefreshToken[]
+}
+
+model RefreshToken {
+  id String @id @default(uuid())
+  token String 
+  expiredAt DateTime
+  userId String
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade,onUpdate: Cascade)
+}
+
+model Task {
+  id String @id @default(uuid())
+  title String 
+  description String 
+  userId String
+  user User @relation(fields: [userId],references: [id], onDelete: Cascade,onUpdate: Cascade)
+  status  Status @default(PENDING)
+  startTime DateTime 
+  endTime  DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
